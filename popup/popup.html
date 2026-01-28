@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grok 视频批量生成器</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎬 Grok 视频批量生成器</h1>
+    </header>
+
+    <main>
+      <!-- 状态显示 -->
+      <div id="status" class="status-box">
+        <span class="status-icon">ℹ️</span>
+        <span id="statusText">请先选择图片和提示词文件</span>
+      </div>
+
+      <!-- 图片选择 -->
+      <section class="upload-section">
+        <h2>📸 选择图片</h2>
+        <input 
+          type="file" 
+          id="imageInput" 
+          accept="image/*" 
+          multiple 
+          style="position: absolute; opacity: 0; left: -9999px; pointer-events: none;"
+        >
+        <button id="selectImagesBtn" class="btn btn-primary">
+          选择图片文件
+        </button>
+        <div id="imageInfo" class="file-info">
+          未选择图片
+        </div>
+        <!-- 图片预览区域 -->
+        <div id="imagePreview" class="image-preview-container" style="display: none;">
+          <h3 style="font-size: 14px; margin: 10px 0 8px 0; color: #666;">图片预览</h3>
+          <div id="imagePreviewGrid" class="image-preview-grid"></div>
+        </div>
+      </section>
+
+      <!-- 提示词选择 -->
+      <section class="upload-section">
+        <h2>📝 提示词管理</h2>
+        <input 
+          type="file" 
+          id="promptInput" 
+          accept=".txt" 
+          style="position: absolute; opacity: 0; left: -9999px; pointer-events: none;"
+        >
+        <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+          <button id="selectPromptBtn" class="btn btn-primary" style="flex: 1;">
+            导入TXT文件
+          </button>
+          <button id="clearPromptBtn" class="btn btn-secondary" style="flex: 1;">
+            清空
+          </button>
+        </div>
+        <div style="margin-bottom: 8px; font-size: 12px; color: #666;">
+          💡 每行一个提示词，可手动编辑
+        </div>
+        <textarea 
+          id="promptTextarea" 
+          class="prompt-textarea"
+          placeholder="在此输入提示词，每行一个&#10;或点击上方按钮导入TXT文件&#10;&#10;示例：&#10;A beautiful sunset over the ocean&#10;A futuristic city at night&#10;A peaceful forest scene"
+          rows="8"
+        ></textarea>
+        <div id="promptInfo" class="file-info">
+          未输入提示词
+        </div>
+      </section>
+
+      <!-- 预览区域 -->
+      <section id="previewSection" class="preview-section" style="display: none;">
+        <h2>👀 预览配对</h2>
+        <div id="previewList" class="preview-list"></div>
+      </section>
+
+      <!-- 进度显示 -->
+      <section id="progressSection" class="progress-section" style="display: none;">
+        <h2>⏳ 处理进度</h2>
+        <div class="progress-bar-container">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+        <div id="progressText" class="progress-text">0 / 0</div>
+        <div id="progressDetails" class="progress-details"></div>
+      </section>
+
+      <!-- 控制按钮 -->
+      <section class="control-section">
+        <button id="startBtn" class="btn btn-success" disabled>
+          开始生成视频
+        </button>
+        <button id="pauseBtn" class="btn btn-warning" style="display: none;">
+          暂停
+        </button>
+        <button id="resumeBtn" class="btn btn-info" style="display: none;">
+          继续
+        </button>
+        <button id="stopBtn" class="btn btn-danger" style="display: none;">
+          停止
+        </button>
+      </section>
+
+      <!-- 任务队列 -->
+      <section id="taskQueueSection" class="task-queue-section" style="display: none;">
+        <h2>📋 任务队列</h2>
+        <div id="taskQueueList" class="task-queue-list"></div>
+      </section>
+
+      <!-- 日志区域 -->
+      <section class="log-section">
+        <h2>📋 操作日志</h2>
+        <div id="logContainer" class="log-container"></div>
+        <button id="clearLogBtn" class="btn btn-secondary btn-sm">
+          清空日志
+        </button>
+      </section>
+    </main>
+
+    <footer>
+      <p class="version">v1.3.0</p>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
