@@ -43,15 +43,15 @@
 
 ---
 
-## � 界面展示
+## 📸 界面展示
 
-````carousel
-![主界面 - 选择图片和提示词](screenshots/main_interface.png)
-<!-- slide -->
-![处理中 - 实时进度追踪](screenshots/processing_view.png)
-<!-- slide -->
-![完成 - 所有视频生成完毕](screenshots/completion_view.png)
-````
+<div align="center">
+
+![扩展界面](screenshots/extension_interface.png)
+
+*Grok 视频批量生成器 - 现代化的暗色主题界面*
+
+</div>
 
 ---
 
